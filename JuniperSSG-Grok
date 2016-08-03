@@ -1,0 +1,12 @@
+Condition
+
+    Will only attempt to run if the message includes the string NetScreen
+
+Configuration
+
+    grok_pattern: %{DATA:Device}: NetScreen device_id=%{DATA:IGNORE} %{DATA:Monkeys}: start_time="(%{DATA:LoggedDate} %{DATA:LoggedTime)"
+    duration=%{INT:Duration} policy_id=%{INT:PolicyID} service=%{DATA:Service} proto=%{INT:Protocol} src zone=%{WORD:SourceZone} dst zone
+    =%{WORD:DestinationZone} action=%{GREEDYDATA:Action} sent=%{INT:BytesSent} rcvd=%{INT:BytesReceived} src=%{IP:SourceIP} dst=%{IP
+    :DestinationIP} ?(src_port=%{INT:SourcePort} dst_port=%{INT:DestinationPort})? ?(icmp type=%{BASE10NUM:ICMPType} icmp code
+    =%{BASE10NUM:ICMPCode})? ?(src-xlated ip=%{IP:SourceXlatedIP} port=%{INT:SourceXlatedPort} dst-xlated ip=%{IP:DestinationXlatedIP} 
+    port=%{INT:DestinationXlatedPort})? session_id=%{INT:Session} reason=%{GREEDYDATA:Reason}
